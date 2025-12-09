@@ -212,13 +212,13 @@
                         </a>
                         <a href="https://www.linkedin.com/in/dmishib/" class="flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors">
                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-400"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-                            LinkedIn
+                            linkedin.com/in/dmishib
                         </a>
                         <!-- Telegram (Only for RU) -->
                         
                         <a href="https://t.me/DmiShib" class="flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-400"><path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-8.609 3.33c-2.068.8-4.133 1.598-5.724 2.21a405.15 405.15 0 0 1-2.849 1.09c-.42.147-.99.332-1.473.901-.728.968.193 1.798.919 2.286 1.61.516 3.275 1.009 4.654 1.472.509 1.793.997 3.592 1.48 5.388.16.36.506.494.864.498l-.002.018s.281.028.555-.038a2.1 2.1 0 0 0 .933-.517c.345-.324 1.28-1.244 1.811-1.764l1.524 1.167c.399.297.786.634 1.338.629.613-.017 1.086-.432 1.264-1.07l2.214-10.813a2.27 2.27 0 0 0-.022-1.18 2.29 2.29 0 0 0-.736-1.089 2.11 2.11 0 0 0-1.137-.374Z"/></svg>
-                            Telegram
+                            t.me/DmiShib
                         </a>
                         
                         <a href="https://dmitryshibanov.com/" class="flex items-center gap-1.5 text-cyan-400 font-semibold hover:text-cyan-200 transition-colors">
