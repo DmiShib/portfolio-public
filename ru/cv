@@ -41,6 +41,29 @@
             padding: 0;
         }
 
+        /* PDF Page Break Management */
+        @media print {
+            /* Add padding to columns so text has space from page breaks */
+            .left-column, .right-column {
+                padding-top: 4rem !important;
+                padding-bottom: 4rem !important;
+                box-decoration-break: clone;
+                -webkit-box-decoration-break: clone;
+            }
+
+            /* Remove top padding on first page by compensating with negative margin */
+            .left-column > :first-child,
+            .right-column > :first-child {
+                margin-top: -3rem !important;
+            }
+        }
+
+        /* Prevent breaking inside experience items */
+        .experience-item {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
         /*
            MARKDOWN CONTENT STYLING (The core of the fix)
            We map specific Markdown elements to the exact visual style from index.html
@@ -150,7 +173,7 @@
     <main class="page-container bg-white w-full overflow-hidden relative">
 
         <!-- Header Section -->
-        <header class="bg-slate-900 text-slate-200 p-8 sm:p-10 relative">
+        <header class="bg-slate-900 text-slate-200 p-8 relative">
             <div class="relative z-10 flex flex-row gap-6 items-start">
 
                 <!-- Photo (Only for RU) -->
@@ -162,7 +185,7 @@
                 </div>
 
                 <!-- Name & Title -->
-                <div class="flex-grow w-full pt-2">
+                <div class="flex-grow w-full">
                     <div class="flex flex-row justify-between items-start">
                         <div>
                             <h1 class="text-3xl font-extrabold tracking-tight mb-1 text-white">Дмитрий Шибанов</h1>
@@ -207,10 +230,10 @@
             </div>
         </header>
 
-        <div class="grid grid-cols-12 gap-0">
+        <div class="flex">
 
             <!-- LEFT COLUMN (Skills & Summary) -->
-            <div class="col-span-4 bg-slate-50 p-6 border-r border-slate-100">
+            <div class="left-column w-[240px] bg-slate-50 p-4 border-r border-slate-100 flex-shrink-0">
 
                 <!-- About Me -->
                 <section class="mb-8 prose prose-sm text-xs">
@@ -270,7 +293,7 @@
             </div>
 
             <!-- RIGHT COLUMN (Experience) -->
-            <div class="col-span-8 p-8 pl-8">
+            <div class="right-column flex-1 p-4">
                 <h3 class="text-xl font-bold text-slate-900 mb-6 flex items-center gap-3">
                     <span class="bg-cyan-400 w-2 h-8 rounded-full"></span>
                     Опыт работы
@@ -278,7 +301,7 @@
 
                 <div class="space-y-8 border-l-2 border-slate-100 ml-3 pl-7 relative">
                     
-                        <div class="relative break-inside-avoid">
+                        <div class="relative break-inside-avoid experience-item">
                             <!-- Dot -->
                             <div class="absolute -left-[39px] top-1 w-5 h-5 bg-cyan-400 rounded-full border-4 border-white shadow-sm"></div>
 
@@ -289,10 +312,10 @@
 
                             <p class="text-slate-500 font-medium text-sm mb-2">Основатель, Lead Developer & Architect</p>
 
-                            <div class="prose prose-sm text-sm text-slate-700 leading-relaxed max-w-none">
+                            <div class="prose prose-sm text-xs text-slate-700 leading-relaxed max-w-none">
                                 <p><em>Основал студию, построив собственную технологическую экосистему для ускорения разработки.</em></p>
 <ul>
-<li><strong>Разработал PlatformUnified SDK:</strong> Архитектура "One API", позволяющая менять вендоров (реклама, аналитика) без правки кода игры, что обеспечивает максимальную гибкость.</li>
+<li><strong>Разработал PlatformUnified SDK:</strong> Архитектура "One API", позволяющая менять вендоров (реклама, аналитика...) без правки кода игры, что обеспечивает максимальную гибкость.</li>
 <li><strong>Модульная архитектура:</strong> Внедрил систему переиспользуемых модулей (UI, Sound, Save...), устранив техническую рутину ради фокуса на геймплее.</li>
 <li><strong>DevOps и Автоматизация:</strong> Настроил пайплайн на <strong>SuperUnityBuild</strong>. Написал кастомные скрипты для автоматического управления сменой DEV/PROD, манифестами и сборкой Addressables, исключая ошибки ручного релиза.</li>
 <li><strong>Full-Cycle Production:</strong> Самостоятельно выпустил 2 проекта в Google Play (<code>Find 100 Cats</code>, <code>Splash Blast</code>), отвечая за код, шейдеры, арт и маркетинг.</li>
@@ -302,7 +325,7 @@
                             </div>
                         </div>
                     
-                        <div class="relative break-inside-avoid">
+                        <div class="relative break-inside-avoid experience-item">
                             <!-- Dot -->
                             <div class="absolute -left-[39px] top-1 w-5 h-5 bg-slate-200 rounded-full border-4 border-white "></div>
 
@@ -313,20 +336,19 @@
 
                             <p class="text-slate-500 font-medium text-sm mb-2">Lead Unity Developer (Acting Technical Owner)</p>
 
-                            <div class="prose prose-sm text-sm text-slate-700 leading-relaxed max-w-none">
+                            <div class="prose prose-sm text-xs text-slate-700 leading-relaxed max-w-none">
                                 <p><em>За время работы в компании вырос до роли, фактически исполняющей обязанности Technical Owner.</em></p>
 <ul>
 <li><strong>Возглавил разработку хита <em>Home Design</em>:</strong> Принял проект на этапе перезапуска. Провел глубокий архитектурный аудит, восстановил знания о кодовой базе и наладил стабильный процесс разработки.</li>
 <li><strong>Управление командой:</strong> Сформировал новую команду, внедрил стандарты код-ревью и систему менторства.</li>
-<li><strong>Продуктовая архитектура:</strong> Спроектировал архитектуру критических фич монетизации (премиум-подписка, новые плейсменты), обеспечив их надежность.</li>
-<li><strong>Стабильность (Live-Ops):</strong> Лично устранял сложные технические проблемы (ANR, краши), базируясь на данных Crashlytics.</li>
-<li><strong>R&#x26;D:</strong> Улучшил <strong>Game Feel</strong> проекта, внедрив процедурные анимации и VFX для повышения качества взаимодействия.</li>
+<li><strong>Продуктовая архитектура:</strong> Спроектировал архитектуру критических фич монетизации (премиум-подписка, новые плейсменты).</li>
+<li><strong>Стабильность (Live-Ops):</strong> Устранял сложные технические проблемы (ANR, краши), базируясь на данных Crashlytics.</li>
 </ul>
 
                             </div>
                         </div>
                     
-                        <div class="relative break-inside-avoid">
+                        <div class="relative break-inside-avoid experience-item">
                             <!-- Dot -->
                             <div class="absolute -left-[39px] top-1 w-5 h-5 bg-slate-200 rounded-full border-4 border-white "></div>
 
@@ -337,7 +359,7 @@
 
                             <p class="text-slate-500 font-medium text-sm mb-2">Unity Developer (VR/PC)</p>
 
-                            <div class="prose prose-sm text-sm text-slate-700 leading-relaxed max-w-none">
+                            <div class="prose prose-sm text-xs text-slate-700 leading-relaxed max-w-none">
                                 <p><em>Компания-лидер рынка СНГ по разработке учебного оборудования.</em></p>
 <ul>
 <li><strong>B2B Симуляторы:</strong> Создал 13+ виртуальных лабораторных комплексов (VR/PC) для ВУЗов по техническим дисциплинам.</li>
@@ -349,7 +371,7 @@
                             </div>
                         </div>
                     
-                        <div class="relative break-inside-avoid">
+                        <div class="relative break-inside-avoid experience-item">
                             <!-- Dot -->
                             <div class="absolute -left-[39px] top-1 w-5 h-5 bg-slate-200 rounded-full border-4 border-white "></div>
 
@@ -360,7 +382,7 @@
 
                             <p class="text-slate-500 font-medium text-sm mb-2">Indie Developer</p>
 
-                            <div class="prose prose-sm text-sm text-slate-700 leading-relaxed max-w-none">
+                            <div class="prose prose-sm text-xs text-slate-700 leading-relaxed max-w-none">
                                 <p><em>Период активного самообучения и создания первых коммерческих продуктов.</em></p>
 <ul>
 <li><strong>Первый релиз:</strong> Full-cycle разработка и выпуск игры <code>Tunnel Wave</code> в Google Play.</li>
