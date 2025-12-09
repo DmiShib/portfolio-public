@@ -1,0 +1,382 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - Dmitry Shibanov</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cyan: {
+                            400: '#22d3ee',
+                            600: '#0891b2',
+                            50: '#ecfeff',
+                        },
+                        slate: {
+                            900: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --text-main: #334155;
+            --text-muted: #64748b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: white;
+            color: var(--text-main);
+            -webkit-font-smoothing: antialiased;
+            font-size: 14px;
+            margin: 0;
+            padding: 0;
+        }
+
+        /*
+           MARKDOWN CONTENT STYLING (The core of the fix)
+           We map specific Markdown elements to the exact visual style from index.html
+        */
+
+        /* 1. "ОБО МНЕ" (H1 in Markdown first section) */
+        .prose h1 {
+            font-size: 0.75rem; /* text-xs */
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em; /* tracking-wider */
+            color: #94a3b8; /* text-slate-400 */
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* 2. "Core & Unity Stack" (H2 in Markdown) */
+        .prose h2 {
+            font-size: 0.75rem; /* text-xs */
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em; /* tracking-wider */
+            color: #94a3b8; /* text-slate-400 */
+            margin-bottom: 0.75rem;
+            border-bottom: 1px solid #e2e8f0; /* border-slate-200 */
+            padding-bottom: 0.25rem;
+            margin-top: 1.5rem; /* Space before new section */
+        }
+        /* Remove top margin for the very first h2 if it exists */
+        .prose h2:first-child { margin-top: 0; }
+
+        /* 3. "Architecture", "Engine & Tools" etc. (H3 in Markdown) */
+        .prose h3 {
+            font-size: 10px; /* text-[10px] */
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #64748b; /* text-slate-500 */
+            margin-bottom: 0.25rem;
+            margin-top: 0.75rem;
+            border-bottom: none; /* Resetting previous style */
+            padding-bottom: 0;
+            letter-spacing: 0;
+        }
+
+        /* Paragraphs (Standard Text) */
+        .prose p { margin-bottom: 0.75rem; line-height: 1.5; }
+
+        /* Lists */
+        .prose ul { list-style-type: none; padding-left: 0; margin-bottom: 0.75rem; }
+        .prose li { position: relative; padding-left: 1.25rem; margin-bottom: 0.25rem; }
+        .prose li::before { content: "•"; position: absolute; left: 0; color: #22d3ee; font-weight: bold; }
+
+        /* Inline Code Tags (e.g. C#, Solid) */
+        .prose code {
+            display: inline-block;
+            background-color: #f1f5f9; /* bg-slate-100 */
+            color: #334155; /* text-slate-700 */
+            padding: 0.125rem 0.5rem; /* px-2 py-0.5 */
+            border-radius: 0.25rem; /* rounded */
+            font-size: 0.75rem; /* text-xs */
+            line-height: 1; /* leading-none */
+            margin-right: 0.25rem;
+            margin-bottom: 0.25rem;
+        }
+
+        /* Blockquotes (Used for short company descriptions) */
+        /* Matching style: text-xs text-slate-500 italic mb-2 */
+        .prose blockquote, .prose blockquote p, .prose em {
+            border-left: none;
+            padding-left: 0;
+            font-style: italic;
+            color: #64748b !important; /* text-slate-500 */
+            font-size: 13px !important; /* text-xs */
+            margin-bottom: 0.5rem; /* mb-2 */
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        /* LANGUAGE TABLE STYLING */
+        /* We style the table to look like a list */
+        .prose table { width: 100%; border-collapse: collapse; font-size: 0.75rem; /* text-xs */ }
+        .prose td, .prose th { padding: 0.25rem 0; border-bottom: none; text-align: left; font-weight: normal; }
+        .prose tr:last-child td { border-bottom: none; }
+
+        /* First column (Language Name) */
+        .prose td:first-child, .prose th:first-child { color: #334155; /* slate-700 */ }
+
+        /* Second column (Level) */
+        .prose td:last-child, .prose th:last-child { font-weight: 600; color: #0f172a; /* slate-900 */ text-align: right; }
+
+        .prose thead { display: table-header-group; } /* Show header (English is often there) */
+
+
+        /* Remove print margins/shadows for PDF generation */
+        @page { margin: 0; size: A4; }
+        .page-container { width: 100%; max-width: none; box-shadow: none; margin: 0; padding: 0; }
+
+        /* Force background printing */
+        * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Resume Container -->
+    <main class="page-container bg-white w-full overflow-hidden relative">
+
+        <!-- Header Section -->
+        <header class="bg-slate-900 text-slate-200 p-8 sm:p-10 relative">
+            <div class="relative z-10 flex flex-row gap-6 items-start">
+
+                <!-- Photo (Only for RU) -->
+                
+
+                <!-- Name & Title -->
+                <div class="flex-grow w-full pt-2">
+                    <div class="flex flex-row justify-between items-start">
+                        <div>
+                            <h1 class="text-3xl font-extrabold tracking-tight mb-1 text-white">Dmitry Shibanov</h1>
+                            <h2 class="text-cyan-400 text-sm font-semibold tracking-wide mb-3">Technical Lead / Senior Unity Developer</h2>
+                        </div>
+                        <!-- Age (Only for RU) -->
+                        
+                    </div>
+
+                    <!-- Location Row -->
+                    <div class="flex items-center gap-1.5 text-sm text-slate-400 mt-2 mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-400"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Chelyabinsk, Russia (Remote / Relocation Open)
+                    </div>
+
+                    <!-- Contacts Row (Separate Line) -->
+                    <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-400 border-t border-white/10 pt-3">
+                        <a href="mailto:dmishib@gmail.com" class="flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-400"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                            dmishib@gmail.com
+                        </a>
+                        <a href="https://www.linkedin.com/in/dmishib/" class="flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-400"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                            LinkedIn
+                        </a>
+                        <!-- Telegram (Only for RU) -->
+                        
+                        <a href="https://dmitryshibanov.com/" class="flex items-center gap-1.5 text-cyan-400 font-semibold hover:text-cyan-200 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                            dmitryshibanov.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-12 gap-0">
+
+            <!-- LEFT COLUMN (Skills & Summary) -->
+            <div class="col-span-4 bg-slate-50 p-6 border-r border-slate-100">
+
+                <!-- About Me -->
+                <section class="mb-8 prose prose-sm text-xs">
+                    <h1>About Me</h1>
+<p><strong>10+ years of experience in Unity development (C#)</strong></p>
+<p>Specializing in creating scalable architectures and deep optimization. Combining engineering expertise with Technical Artist skills (HLSL, VFX) and a full-cycle product vision.</p>
+<ul>
+<li><strong>Focus:</strong> Optimization, Ecosystem Design, Architectural Audit, and AI Pipeline implementation.</li>
+<li><strong>Key Metrics:</strong> 20+ commercial products, 6 full-cycle releases, Team Leadership (5+ people).</li>
+</ul>
+
+                </section>
+
+                <!-- Skills -->
+                <section class="mb-8 prose prose-sm text-xs">
+                     <h2>CORE &#x26; UNITY STACK</h2>
+<h3>ARCHITECTURE</h3>
+<p><code>C#</code> <code>SOLID</code> <code>Design Patterns</code> <code>Modular Architecture</code></p>
+<h3>ENGINE &#x26; TOOLS</h3>
+<p><code>Addressables</code> <code>Job System</code> <code>Burst</code> <code>Odin</code> <code>Firebase</code> <code>Git (Submodules)</code> <code>CI/CD</code></p>
+<h3>LIBRARIES</h3>
+<p><code>Zenject/Extenject</code> <code>UniRx/R3</code> <code>UniTask</code> <code>DOTween/PrimeTween</code> <code>ZLinq</code></p>
+<h3>RENDERING</h3>
+<p><code>URP</code> <code>Shader (HLSL, ShaderLab, Compute Shaders)</code> <code>Particle System</code> <code>Procedural Generation</code></p>
+<h3>OPTIMIZATION</h3>
+<p><code>Mobile/WebGL</code> <code>Adaptive Performance</code> <code>Battery &#x26; Thermal</code> <code>UI</code> <code>Shaders</code> <code>C#</code></p>
+<h2>AI Engineering</h2>
+<h3>LLM &#x26; RAG</h3>
+<p><code>Ollama (Local)</code> <code>LightRAG</code> <code>Deep Research</code> <code>Gemini</code></p>
+<h3>WORKFLOW</h3>
+<p><code>IDEs (Cursor, Antigravity, Roo-Code)</code> <code>MCP (UnityMCP, Context7, EXA, Firecrawl)</code> <code>GenAI (Stable Diffusion, Nano Banana, ElevenLabs)</code> <code>Prompt Engineering</code></p>
+<h2>PRODUCT &#x26; ART</h2>
+<p><code>ASO</code> <code>Monetization (Appodeal, LevelPlay, IAP)</code> <code>Multiplayer (Photon)</code> <code>Blender</code> <code>Photoshop</code> <code>Illustrator</code> <code>UI/UX Design</code></p>
+
+                </section>
+
+                 <!-- Languages -->
+                <section class="mb-8 prose prose-sm text-xs">
+                     <h2>LANGUAGES</h2>
+<table>
+<thead>
+<tr>
+<th>Russian</th>
+<th>Native</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>English</td>
+<td>B1 — Technical</td>
+</tr>
+</tbody>
+</table>
+
+                </section>
+
+            </div>
+
+            <!-- RIGHT COLUMN (Experience) -->
+            <div class="col-span-8 p-8 pl-8">
+                <h3 class="text-xl font-bold text-slate-900 mb-6 flex items-center gap-3">
+                    <span class="bg-cyan-400 w-2 h-8 rounded-full"></span>
+                    Experience
+                </h3>
+
+                <div class="space-y-8 border-l-2 border-slate-100 ml-3 pl-7 relative">
+                    
+                        <div class="relative break-inside-avoid">
+                            <!-- Dot -->
+                            <div class="absolute -left-[39px] top-1 w-5 h-5 bg-cyan-400 rounded-full border-4 border-white shadow-sm"></div>
+
+                            <div class="flex flex-row items-baseline justify-between mb-1">
+                                <h4 class="text-lg font-bold text-slate-900">Grindset Studios</h4>
+                                <span class="text-xs font-bold text-cyan-600 bg-cyan-50 px-2 py-1 rounded-md whitespace-nowrap">August 2023 — Present</span>
+                            </div>
+
+                            <p class="text-slate-500 font-medium text-sm mb-2">Founder, Lead Developer & Architect</p>
+
+                            <div class="prose prose-sm text-sm text-slate-700 leading-relaxed max-w-none">
+                                <p><em>Founded the studio, building a proprietary tech ecosystem to accelerate development.</em></p>
+<ul>
+<li><strong>Developed PlatformUnified SDK:</strong> A "One API" architecture allowing vendor switches (Ads, Analytics) without gameplay code modification, ensuring maximum flexibility.</li>
+<li><strong>Modular Architecture:</strong> Implemented a system of reusable modules (UI, Sound, Save), eliminating technical debt to focus on gameplay.</li>
+<li><strong>DevOps &#x26; Automation:</strong> Configured <strong>SuperUnityBuild</strong> pipeline. Wrote custom scripts for automated DEV/PROD environment switching, manifest management, and Addressables builds, eliminating manual release errors.</li>
+<li><strong>Full-Cycle Production:</strong> Independently shipped 2 projects to Google Play (<code>Find 100 Cats</code>, <code>Splash Blast</code>), handling code, shaders, art, and marketing.</li>
+<li><strong>Tech Art &#x26; Optimization:</strong> Implemented <strong>Adaptive Performance</strong> and thermal analytics for dynamic CPU/GPU load balancing.</li>
+</ul>
+
+                            </div>
+                        </div>
+                    
+                        <div class="relative break-inside-avoid">
+                            <!-- Dot -->
+                            <div class="absolute -left-[39px] top-1 w-5 h-5 bg-slate-200 rounded-full border-4 border-white "></div>
+
+                            <div class="flex flex-row items-baseline justify-between mb-1">
+                                <h4 class="text-lg font-bold text-slate-900">Playgendary</h4>
+                                <span class="text-xs font-bold text-slate-500 bg-slate-100 px-2 py-1 rounded-md whitespace-nowrap">January 2022 — March 2023 (1 yr 3 mos)</span>
+                            </div>
+
+                            <p class="text-slate-500 font-medium text-sm mb-2">Lead Unity Developer (Acting Technical Owner)</p>
+
+                            <div class="prose prose-sm text-sm text-slate-700 leading-relaxed max-w-none">
+                                <p><em>Grew within the company to a role effectively acting as Technical Owner.</em></p>
+<ul>
+<li><strong>Led development of the hit <em>Home Design</em>:</strong> Took over during the restart phase. Conducted a deep architectural audit, restored codebase knowledge, and established a stable development process.</li>
+<li><strong>Team Leadership:</strong> Formed a new team, introduced code review standards and a mentorship system.</li>
+<li><strong>Product Architecture:</strong> Designed the architecture for critical monetization features (Premium Subscription, new Placements), ensuring high reliability.</li>
+<li><strong>Stability (Live-Ops):</strong> Personally resolved complex technical issues (ANR, crashes) based on Crashlytics data.</li>
+<li><strong>R&#x26;D:</strong> Enhanced project <strong>Game Feel</strong> by implementing procedural animations and VFX.</li>
+</ul>
+
+                            </div>
+                        </div>
+                    
+                        <div class="relative break-inside-avoid">
+                            <!-- Dot -->
+                            <div class="absolute -left-[39px] top-1 w-5 h-5 bg-slate-200 rounded-full border-4 border-white "></div>
+
+                            <div class="flex flex-row items-baseline justify-between mb-1">
+                                <h4 class="text-lg font-bold text-slate-900">Uchtech-Profi</h4>
+                                <span class="text-xs font-bold text-slate-500 bg-slate-100 px-2 py-1 rounded-md whitespace-nowrap">August 2018 — January 2022 (3 yrs 6 mos)</span>
+                            </div>
+
+                            <p class="text-slate-500 font-medium text-sm mb-2">Unity Developer (VR/PC)</p>
+
+                            <div class="prose prose-sm text-sm text-slate-700 leading-relaxed max-w-none">
+                                <p><em>CIS market leader in the development of educational equipment.</em></p>
+<ul>
+<li><strong>B2B Simulators:</strong> Created 13+ virtual laboratory complexes (VR/PC) for universities in technical disciplines.</li>
+<li><strong>Expertise Transfer:</strong> Collaborated with professors to translate complex academic methodologies into interactive scenarios.</li>
+<li><strong>Complex Mechanics:</strong> Implemented <strong>high-precision equipment emulation</strong> (with real timings) and non-standard 3D constructors.</li>
+<li><strong>Architecture:</strong> Designed a scalable system for a Lego-trainer supporting the assembly of 70+ unique models.</li>
+</ul>
+
+                            </div>
+                        </div>
+                    
+                        <div class="relative break-inside-avoid">
+                            <!-- Dot -->
+                            <div class="absolute -left-[39px] top-1 w-5 h-5 bg-slate-200 rounded-full border-4 border-white "></div>
+
+                            <div class="flex flex-row items-baseline justify-between mb-1">
+                                <h4 class="text-lg font-bold text-slate-900">Realoft</h4>
+                                <span class="text-xs font-bold text-slate-500 bg-slate-100 px-2 py-1 rounded-md whitespace-nowrap">December 2016 — January 2019</span>
+                            </div>
+
+                            <p class="text-slate-500 font-medium text-sm mb-2">Indie Developer</p>
+
+                            <div class="prose prose-sm text-sm text-slate-700 leading-relaxed max-w-none">
+                                <p><em>Period of active self-learning and creating first commercial products.</em></p>
+<ul>
+<li><strong>First Release:</strong> Full-cycle development and release of <code>Tunnel Wave</code> on Google Play.</li>
+<li><strong>Technical Start:</strong> Implemented a number of complex prototypes, laying the foundation for shader skills (<code>Shader Forge/HLSL</code>).</li>
+</ul>
+
+                            </div>
+                        </div>
+                    
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-slate-100 break-inside-avoid">
+                    <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-3">
+                        <span class="bg-slate-300 w-2 h-8 rounded-full"></span>
+                        Education
+                    </h3>
+                    <div class="prose prose-sm text-sm text-slate-600">
+                        <p><strong>South Ural State College (SUSC)</strong><br>
+<em>Automation of Technological Processes and Production (2015 — 2019)</em></p>
+<blockquote>
+<p><strong>Diploma:</strong> Development of a production line software simulation (based on real tasks from "Uchtech-Profi").</p>
+</blockquote>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+  
